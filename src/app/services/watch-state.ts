@@ -19,7 +19,7 @@ export class WatchStateService {
     {
       id: 'silver',
       name: 'المشرق سيلفر',
-      image: 'imgs/watch_round_silver-X5UnnnHu9f4D5bZzyhKDX5.webp',
+      image: 'mash/imgs/watch_round_silver-X5UnnnHu9f4D5bZzyhKDX5.webp',
       colorLabel: 'فضي أنيق',
       accentColor: '#94a3b8',
       subtitle: 'لمعان فضي عصري',
@@ -29,7 +29,7 @@ export class WatchStateService {
     {
       id: 'gold',
       name: 'المشرق جولد',
-      image: 'imgs/watch_round_gold-GFnr2PRAKMRYKYLAywQyYM.webp',
+      image: 'mash/imgs/watch_round_gold-GFnr2PRAKMRYKYLAywQyYM.webp',
       colorLabel: 'ذهبي فاخر',
       accentColor: '#ca8a04',
       subtitle: 'فخامة ذهبية متألقة',
@@ -39,7 +39,7 @@ export class WatchStateService {
     {
       id: 'black',
       name: 'المشرق بلاك',
-      image: 'imgs/watch_round_black-kHtc2MVWUXPM5RMyDt3kVv.webp',
+      image: 'mash/imgs/watch_round_black-kHtc2MVWUXPM5RMyDt3kVv.webp',
       colorLabel: 'أسود كلاسيكي',
       accentColor: '#1f2937',
       subtitle: 'أناقة كلاسيكية غامضة',
@@ -49,7 +49,7 @@ export class WatchStateService {
     {
       id: 'red',
       name: 'المشرق ريد',
-      image: 'imgs/watch_round_red-iLDyT8oHMCegniVtSkTmsa.webp',
+      image: 'mash/imgs/watch_round_red-iLDyT8oHMCegniVtSkTmsa.webp',
       colorLabel: 'أحمر جريء',
       accentColor: '#dc2626',
       subtitle: 'حيوية حمراء جريئة',
@@ -59,7 +59,7 @@ export class WatchStateService {
     {
       id: 'blue',
       name: 'المشرق بلو',
-      image: 'imgs/watch_round_blue-oKJENGiLeVFf8fKs7VHejP.webp',
+      image: 'mash/imgs/watch_round_blue-oKJENGiLeVFf8fKs7VHejP.webp',
       colorLabel: 'أزرق ملكي',
       accentColor: '#2563eb',
       subtitle: 'أصالة زرقاء ملكية',
@@ -69,7 +69,7 @@ export class WatchStateService {
     {
       id: 'orange',
       name: 'المشرق أورانج',
-      image: 'imgs/watch_round_orange-dGLeVRQCuaYU75MHBtUwo6.webp',
+      image: 'mash/imgs/watch_round_orange-dGLeVRQCuaYU75MHBtUwo6.webp',
       colorLabel: 'برتقالي مشرق',
       accentColor: '#ea580c',
       subtitle: 'إشراقة برتقالية مميزة',
@@ -79,7 +79,7 @@ export class WatchStateService {
     {
       id: 'purple',
       name: 'المشرق بيربل',
-      image: 'imgs/watch_round_purple-Kgk4jdyc2mrZXTqvDKcQFU.webp',
+      image: 'mash/imgs/watch_round_purple-Kgk4jdyc2mrZXTqvDKcQFU.webp',
       colorLabel: 'بنفسجي غامق',
       accentColor: '#7c3aed',
       subtitle: 'غموض بنفسجي ساحر',
@@ -89,7 +89,7 @@ export class WatchStateService {
     {
       id: 'pink',
       name: 'المشرق بينك',
-      image: 'imgs/watch_round_pink-WR69t57tSvhMaR3waHe2EU.webp',
+      image: 'mash/imgs/watch_round_pink-WR69t57tSvhMaR3waHe2EU.webp',
       colorLabel: 'وردي ناعم',
       accentColor: '#db2777',
       subtitle: 'رقة وردية ناعمة',
@@ -99,7 +99,7 @@ export class WatchStateService {
     {
       id: 'green',
       name: 'المشرق جرين',
-      image: 'imgs/watch_round_green-5tz9H8WDitg47kCvFKsa9Z.webp',
+      image: 'mash/imgs/watch_round_green-5tz9H8WDitg47kCvFKsa9Z.webp',
       colorLabel: 'أخضر عسكري',
       accentColor: '#16a34a',
       subtitle: 'صلابة عسكرية مغامرة',
@@ -109,7 +109,7 @@ export class WatchStateService {
     {
       id: 'rosegold',
       name: 'المشرق روز جولد',
-      image: 'imgs/watch_round_rosegold-23EEP3GyeDxR9YCVHy5Vxy.webp',
+      image: 'mash/imgs/watch_round_rosegold-23EEP3GyeDxR9YCVHy5Vxy.webp',
       colorLabel: 'روز جولد',
       accentColor: '#fda4af',
       subtitle: 'جمال روز جولد متفرد',
@@ -119,7 +119,7 @@ export class WatchStateService {
     {
       id: 'brown',
       name: 'المشرق براون',
-      image: 'imgs/watch_round_brown-NDc9bQn867tdpbVeB67UK6.webp',
+      image: 'mash/imgs/watch_round_brown-NDc9bQn867tdpbVeB67UK6.webp',
       colorLabel: 'بني جلد',
       accentColor: '#78350f',
       subtitle: 'جاذبية بنية كلاسيكية',
@@ -129,7 +129,7 @@ export class WatchStateService {
     {
       id: 'white',
       name: 'المشرق وايت',
-      image: 'imgs/watch_round_white-QpLqxaCgJArRbYdZaJkKxB.webp',
+      image: 'mash/imgs/watch_round_white-QpLqxaCgJArRbYdZaJkKxB.webp',
       colorLabel: 'أبيض نقي',
       accentColor: '#f8fafc',
       subtitle: 'نقاء أبيض ناصع',
@@ -139,7 +139,7 @@ export class WatchStateService {
     {
       id: 'teal',
       name: 'المشرق تيل',
-      image: 'imgs/watch_round_teal-ZZKpzX2EirgVAvJDAHqZEa.webp',
+      image: 'mash/imgs/watch_round_teal-ZZKpzX2EirgVAvJDAHqZEa.webp',
       colorLabel: 'تركواز',
       accentColor: '#0d9488',
       subtitle: 'انتعاش تركواز متلألئ',
