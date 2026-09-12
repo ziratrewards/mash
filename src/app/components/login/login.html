@@ -1,136 +1,369 @@
-<!-- Main Login Container (Light Theme) -->
-<div class="max-w-[480px] w-full min-h-screen bg-white border-x border-zinc-200/80 mx-auto shadow-2xl relative flex flex-col justify-between font-sans pb-4">
+<!-- Mobile Container Viewport -->
+<div class="max-w-[440px] w-full min-h-screen mx-auto relative flex flex-col justify-between overflow-x-hidden font-sans select-none bg-gradient-to-b from-[#b83800] via-[#d64800] via-[#ea580c] to-[#f97316]">
 
-  <!-- Main Body Content -->
-  <div class="w-full flex-grow flex flex-col">
-    <!-- Header -->
-    <header class="w-full flex items-center justify-between px-6 py-4 border-b border-zinc-100">
-      <!-- Right side: Logo -->
-      <div class="flex items-center">
-        <img src="mash/imgs/mashreq_logo_0ba61c5b_2e1aa377.png" alt="بنك المشرق" class="h-9 w-auto object-contain" />
+  <!-- Top Hero & Background Section -->
+  <div class="w-full flex flex-col relative z-0 flex-grow pb-4">
+
+    <!-- Mobile Status Bar (Simulated Native App Feel) -->
+    <div class="w-full pt-3 px-6 pb-2 flex items-center justify-between text-white/95 text-xs font-semibold tracking-tight select-none">
+      <!-- Left: Time + Notification -->
+      <div class="flex items-center gap-1.5">
+        <span class="font-bold text-sm tracking-normal">17:23</span>
+        <!-- Bell / Silent mode icon -->
+        <svg class="w-3.5 h-3.5 fill-current opacity-90" viewBox="0 0 24 24">
+          <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/>
+        </svg>
       </div>
-      <!-- Left side: Language Pill dropdown -->
-      <button class="px-4 py-1.5 border border-zinc-200 text-zinc-700 text-xs font-black rounded-full flex items-center justify-center gap-1 bg-zinc-50 hover:bg-zinc-100 transition-colors select-none">
-        <span>العربية</span>
-        <span class="text-[9px] text-zinc-400">▼</span>
-      </button>
-    </header>
 
-    <!-- Inputs & Forms Section -->
-    <form (submit)="handleFormSubmit($event)" class="px-6 pt-10 flex-grow flex flex-col justify-between">
-      <div class="space-y-6">
-
-        <!-- Error Feedback message -->
-        @if (errorMessage()) {
-          <div class="p-3.5 bg-rose-50 text-rose-600 rounded-xl text-xs font-bold flex items-center gap-2 border border-rose-100 animate-fade-in">
-            <span>⚠️</span>
-            <p class="leading-relaxed text-right flex-grow">{{ errorMessage() }}</p>
-          </div>
-        }
-
-        <!-- Username Field -->
-        <div>
-          <label class="block text-sm font-black text-zinc-800 mb-1.5 text-right">اسم المستخدم</label>
-          <input type="text" 
-                 [value]="username()"
-                 (input)="onInput('user', $event)"
-                 placeholder="أدخل اسم المستخدم" 
-                 class="w-full bg-zinc-50/80 border border-zinc-200/80 rounded-xl px-4 py-3.5 text-sm text-zinc-800 placeholder-zinc-400 focus:outline-none focus:border-orange-500 focus:bg-white transition-all text-right shadow-sm" />
+      <!-- Right: Cellular, Wifi & Battery -->
+      <div class="flex items-center gap-2">
+        <!-- Cellular Signal Bars -->
+        <div class="flex items-end gap-0.5 h-3">
+          <span class="w-0.5 h-1 bg-white rounded-xs"></span>
+          <span class="w-0.5 h-1.5 bg-white rounded-xs"></span>
+          <span class="w-0.5 h-2 bg-white rounded-xs"></span>
+          <span class="w-0.5 h-2.5 bg-white rounded-xs"></span>
         </div>
 
-        <!-- Password Field -->
-        <div>
-          <label class="block text-sm font-black text-zinc-800 mb-1.5 text-right">كلمة المرور</label>
-          <div class="relative w-full">
-            <input [type]="isPasswordVisible() ? 'text' : 'password'" 
-                   [value]="password()"
-                   (input)="onInput('pass', $event)"
-                   placeholder="أدخل كلمة المرور" 
-                   class="w-full bg-zinc-50/80 border border-zinc-200/80 rounded-xl pl-12 pr-4 py-3.5 text-sm text-zinc-800 placeholder-zinc-400 focus:outline-none focus:border-orange-500 focus:bg-white transition-all text-right shadow-sm" />
-            <!-- Eye toggle button on the left (RTL representation) -->
-            <button type="button" 
-                    (click)="togglePasswordVisibility()" 
-                    class="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600 focus:outline-none select-none text-base">
-              {{ isPasswordVisible() ? '👁️' : '👁️‍🗨️' }}
-            </button>
-          </div>
-          <!-- Forgot Password Link (Aligns to left of the card in RTL) -->
-          <a class="text-xs font-bold text-rose-500 hover:text-rose-600 block text-left mt-2 cursor-pointer transition-colors">
-            هل نسيت كلمة المرور؟
-          </a>
+        <!-- 5G / Wifi -->
+        <div class="flex items-center">
+          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+            <path d="M12 4C7.31 4 3.07 5.9 0 8.98L12 21 24 8.98C20.93 5.9 16.69 4 12 4zm0 3.3c3.78 0 7.22 1.48 9.77 3.88L12 18.92 2.23 11.18C4.78 8.78 8.22 7.3 12 7.3z"/>
+          </svg>
         </div>
 
-        <!-- CTA Row (Fingerprint key + Login button) -->
-        <div class="flex items-center gap-3 pt-4">
-          <!-- Fingerprint/Smart login box (Renders on the right in RTL, so first in code) -->
-          <button type="button" class="w-12 h-12 flex items-center justify-center rounded-xl border-2 border-orange-500 bg-white text-orange-500 hover:bg-orange-50/50 active:scale-95 transition-all cursor-pointer shadow-sm">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 009 11a13.92 13.92 0 00-2.29-6.862m3.44 2.04A13.93 13.93 0 0112 11c0 .26-.007.518-.02.775m-3.44-2.04A13.93 13.93 0 009 11c0 .26.007.518.02.775m5.42 2.625c.362.83.606 1.724.717 2.66m-1.393-5.285A13.92 13.92 0 0116 11c0 .26-.007.518-.02.775m-2.222-1.895A13.93 13.93 0 0114 11c0 .26-.007.518-.02.775m4.337-1.09a13.9 13.9 0 01.666 4.25c0 1.258-.166 2.477-.48 3.636" />
-            </svg>
-          </button>
-
-          <!-- Login Button -->
-          <button type="submit" 
-                  [disabled]="!isFormValid"
-                  class="flex-grow py-3 rounded-xl font-extrabold text-sm transition-all duration-300 text-center flex items-center justify-center select-none"
-                  [ngClass]="isFormValid ? 'bg-gradient-to-r from-orange-600 to-amber-500 hover:from-orange-500 hover:to-amber-400 text-white shadow-lg shadow-orange-500/10 cursor-pointer active:scale-[0.99]' : 'bg-zinc-100 text-zinc-400 cursor-not-allowed'">
-            تسجيل الدخول
-          </button>
+        <!-- Battery pill with 49% -->
+        <div class="flex items-center gap-1 border border-white/80 rounded-sm px-1 py-0.5 text-[10px] leading-none font-bold">
+          <span>49</span>
         </div>
-
-        <!-- Register Link -->
-        <p class="text-center text-xs font-bold text-zinc-400 mt-5">
-          مستخدم جديد؟ 
-          <a class="text-blue-600 hover:text-blue-500 cursor-pointer transition-colors ml-1">سجل الآن</a>
-        </p>
-
-        <!-- Version Footer -->
-        <span class="text-center text-[10px] text-zinc-400 font-extrabold mt-12 block select-none">
-          إصدار التطبيق 3.1.5
-        </span>
       </div>
-    </form>
-  </div>
-
-  <!-- Bottom Solid Banner (Help) -->
-  <div class="w-full mt-10">
-    <div class="py-3 bg-[#f47321] text-white font-bold text-xs text-center flex items-center justify-center gap-1 cursor-pointer hover:bg-orange-500 transition-colors shadow-md">
-      <span>📞</span>
-      <span>تحتاج إلى مساعدة؟ اتصل بنا</span>
     </div>
 
-    <!-- Navigation Tab Bar -->
-    <nav class="w-full border-t border-zinc-100 bg-white flex items-center justify-around py-3 px-6 shadow-inner">
-      <!-- Exchange rates (Right) -->
-      <a class="flex flex-col items-center justify-center gap-1.5 cursor-pointer group">
-        <span class="text-blue-600 group-hover:scale-110 transition-transform">💱</span>
-        <span class="text-[9px] font-black text-zinc-500 group-hover:text-[#f47321] transition-colors">أسعار الصرف</span>
-      </a>
+    <!-- App Header Bar (Hamburger on Left, Mashreq Flower on Right) -->
+    <header class="w-full px-6 py-2 flex items-center justify-between">
+      <!-- Left: Hamburger Menu Button -->
+      <button type="button" class="text-white hover:text-white/80 focus:outline-none transition-transform active:scale-95 cursor-pointer">
+        <svg class="w-6 h-6 stroke-white stroke-[2.2] fill-none" viewBox="0 0 24 24">
+          <line x1="4" y1="6" x2="20" y2="6" stroke-linecap="round" />
+          <line x1="4" y1="12" x2="20" y2="12" stroke-linecap="round" />
+          <line x1="4" y1="18" x2="20" y2="18" stroke-linecap="round" />
+        </svg>
+      </button>
 
-      <!-- Rewards (Center) -->
-      <a class="flex flex-col items-center justify-center gap-1.5 cursor-pointer group">
-        <span class="text-blue-600 group-hover:scale-110 transition-transform">🏆</span>
-        <span class="text-[9px] font-black text-zinc-500 group-hover:text-[#f47321] transition-colors">مكافآت</span>
-      </a>
+      <!-- Right: Mashreq Flower Emblem in White -->
+      <div class="flex items-center">
+        <img src="mash/imgs/mashreq_logo_0ba61c5b_2e1aa377.png" 
+             alt="Mashreq Bank" 
+             class="h-7 w-auto object-contain brightness-0 invert opacity-90" />
+      </div>
+    </header>
 
-      <!-- Branches (Left) -->
-      <a class="flex flex-col items-center justify-center gap-1.5 cursor-pointer group">
-        <span class="text-blue-600 group-hover:scale-110 transition-transform">📍</span>
-        <span class="text-[9px] font-black text-zinc-500 group-hover:text-[#f47321] transition-colors">الفروع</span>
-      </a>
-    </nav>
+    <!-- Center Promo Illustration: Bank Safe Vault + Banknotes -->
+    <div class="w-full flex flex-col items-center justify-center pt-2 px-6">
+      
+      <!-- Vector Safe Graphic -->
+      <div class="relative w-full max-w-[280px] h-[170px] flex items-center justify-center select-none">
+        
+        <!-- Dots Matrix Grid on the Left Background -->
+        <div class="absolute left-6 top-3 grid grid-cols-4 gap-1.5 opacity-40">
+          <span class="w-1 h-1 rounded-full bg-amber-200"></span>
+          <span class="w-1 h-1 rounded-full bg-amber-200"></span>
+          <span class="w-1 h-1 rounded-full bg-amber-200"></span>
+          <span class="w-1 h-1 rounded-full bg-amber-200"></span>
+          <span class="w-1 h-1 rounded-full bg-amber-200"></span>
+          <span class="w-1 h-1 rounded-full bg-amber-200"></span>
+          <span class="w-1 h-1 rounded-full bg-amber-200"></span>
+          <span class="w-1 h-1 rounded-full bg-amber-200"></span>
+          <span class="w-1 h-1 rounded-full bg-amber-200"></span>
+          <span class="w-1 h-1 rounded-full bg-amber-200"></span>
+          <span class="w-1 h-1 rounded-full bg-amber-200"></span>
+          <span class="w-1 h-1 rounded-full bg-amber-200"></span>
+          <span class="w-1 h-1 rounded-full bg-amber-200"></span>
+          <span class="w-1 h-1 rounded-full bg-amber-200"></span>
+          <span class="w-1 h-1 rounded-full bg-amber-200"></span>
+          <span class="w-1 h-1 rounded-full bg-amber-200"></span>
+        </div>
+
+        <!-- Radial Dots Arc on the Right Background -->
+        <div class="absolute right-4 bottom-2 grid grid-cols-5 gap-1.5 opacity-40">
+          <span class="w-1 h-1 rounded-full bg-amber-200"></span>
+          <span class="w-1 h-1 rounded-full bg-amber-200"></span>
+          <span class="w-1 h-1 rounded-full bg-amber-200"></span>
+          <span class="w-1 h-1 rounded-full bg-amber-200"></span>
+          <span class="w-1 h-1 rounded-full bg-amber-200"></span>
+          <span class="w-1 h-1 rounded-full bg-amber-200"></span>
+          <span class="w-1 h-1 rounded-full bg-amber-200"></span>
+          <span class="w-1 h-1 rounded-full bg-amber-200"></span>
+          <span class="w-1 h-1 rounded-full bg-amber-200"></span>
+          <span class="w-1 h-1 rounded-full bg-amber-200"></span>
+          <span class="w-1 h-1 rounded-full bg-amber-200"></span>
+          <span class="w-1 h-1 rounded-full bg-amber-200"></span>
+          <span class="w-1 h-1 rounded-full bg-amber-200"></span>
+          <span class="w-1 h-1 rounded-full bg-amber-200"></span>
+          <span class="w-1 h-1 rounded-full bg-amber-200"></span>
+        </div>
+
+        <!-- Safe SVG with Open Door, Dial and Floating Cash -->
+        <svg viewBox="0 0 220 180" class="w-56 h-auto drop-shadow-xl z-10" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="safeOuter" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#b0b8c2" />
+              <stop offset="50%" stop-color="#8a95a5" />
+              <stop offset="100%" stop-color="#677382" />
+            </linearGradient>
+            <linearGradient id="safeInner" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#3b4452" />
+              <stop offset="100%" stop-color="#242c38" />
+            </linearGradient>
+            <linearGradient id="doorGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#cbd5e1" />
+              <stop offset="50%" stop-color="#94a3b8" />
+              <stop offset="100%" stop-color="#64748b" />
+            </linearGradient>
+            <linearGradient id="cashGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#f59e0b" />
+              <stop offset="100%" stop-color="#d97706" />
+            </linearGradient>
+          </defs>
+
+          <!-- Safe Body 3D Outer Box -->
+          <rect x="35" y="32" width="105" height="110" rx="14" fill="url(#safeOuter)" stroke="#cbd5e1" stroke-width="2.5" />
+          
+          <!-- Safe Interior Cavity (Dark Depth) -->
+          <rect x="47" y="44" width="81" height="86" rx="8" fill="url(#safeInner)" stroke="#475569" stroke-width="1.5" />
+
+          <!-- Interior Shelves & Vault Depth Details -->
+          <line x1="47" y1="87" x2="128" y2="87" stroke="#475569" stroke-width="1.5" stroke-dasharray="2 2" />
+
+          <!-- Stack of Banknotes Floating Out -->
+          <!-- Banknote 1 (Back) -->
+          <g transform="translate(100, 36) rotate(14)">
+            <rect x="0" y="0" width="46" height="24" rx="4" fill="#fbbf24" stroke="#f59e0b" stroke-width="1.2" />
+            <circle cx="23" cy="12" r="5" fill="#fef3c7" opacity="0.9" />
+            <rect x="4" y="4" width="38" height="16" rx="2" fill="none" stroke="#f59e0b" stroke-width="0.8" />
+          </g>
+          <!-- Banknote 2 (Middle - prominent) -->
+          <g transform="translate(112, 44) rotate(26)">
+            <rect x="0" y="0" width="50" height="26" rx="4.5" fill="url(#cashGrad)" stroke="#b45309" stroke-width="1.5" />
+            <circle cx="25" cy="13" r="6" fill="#fff" opacity="0.95" />
+            <rect x="4" y="3.5" width="42" height="19" rx="3" fill="none" stroke="#fef3c7" stroke-width="1" />
+          </g>
+
+          <!-- Safe Open Door at Angle -->
+          <g>
+            <!-- Door Panel -->
+            <path d="M125 36 L175 48 L175 142 L125 136 Z" fill="url(#doorGradient)" stroke="#e2e8f0" stroke-width="2" stroke-linejoin="round" />
+            
+            <!-- Door Hinges on Right -->
+            <rect x="171" y="52" width="6" height="14" rx="3" fill="#475569" />
+            <rect x="171" y="122" width="6" height="14" rx="3" fill="#475569" />
+
+            <!-- Vault Dial on Door -->
+            <circle cx="150" cy="94" r="17" fill="#475569" stroke="#94a3b8" stroke-width="2" />
+            <circle cx="150" cy="94" r="12" fill="#cbd5e1" stroke="#334155" stroke-width="1.5" />
+            <circle cx="150" cy="94" r="5" fill="#1e3a8a" />
+            <!-- Dial notches -->
+            <line x1="150" y1="78" x2="150" y2="81" stroke="#334155" stroke-width="1.5" />
+            <line x1="150" y1="107" x2="150" y2="110" stroke="#334155" stroke-width="1.5" />
+            <line x1="134" y1="94" x2="137" y2="94" stroke="#334155" stroke-width="1.5" />
+            <line x1="163" y1="94" x2="166" y2="94" stroke="#334155" stroke-width="1.5" />
+          </g>
+
+          <!-- Floating Front Gold Coin -->
+          <circle cx="120" cy="62" r="7" fill="#f59e0b" stroke="#fef3c7" stroke-width="1.5" />
+          <circle cx="120" cy="62" r="4.5" fill="none" stroke="#d97706" stroke-width="1" />
+
+        </svg>
+
+        <!-- Circular Badge on the Lower-Left Foreground (Pen / Edit Icon) -->
+        <div class="absolute left-2 bottom-3 w-16 h-16 rounded-full bg-gradient-to-tr from-zinc-400 via-zinc-300 to-zinc-200 border-2 border-white/60 shadow-lg flex items-center justify-center z-20">
+          <!-- Diagonal Orange Pencil/Slash -->
+          <div class="w-8 h-2 bg-[#ea580c] rounded-full rotate-[-45deg] shadow-sm"></div>
+        </div>
+
+      </div>
+
+      <!-- Slogan Text Under the Safe -->
+      <h3 class="text-white font-extrabold text-base md:text-lg text-center mt-1 drop-shadow-sm tracking-tight">
+        افتح حساب الادخار و احصل على أعلى
+      </h3>
+    </div>
+
   </div>
 
-  <!-- Polling Loading Overlay -->
+  <!-- Bottom Sheet Card (White curved modal container) -->
+  <div class="w-full bg-white rounded-t-[32px] px-6 pt-3 pb-8 shadow-[0_-12px_45px_rgba(0,0,0,0.22)] relative z-10 flex flex-col">
+
+    <!-- Center Drag Handle Pill -->
+    <div class="w-14 h-1.5 bg-zinc-300 rounded-full mx-auto mb-5 select-none"></div>
+
+    <!-- Header Row: Greeting & Avatar -->
+    <div class="w-full flex items-center justify-between mb-5 select-none">
+      <!-- Title & Greeting Stack (RTL: Aligns to right) -->
+      <div class="flex flex-col text-right">
+        <span class="text-zinc-600 font-bold text-xs md:text-sm">
+          أهلاً بك {{ greetingName() }}
+        </span>
+        <h2 class="text-zinc-900 font-black text-lg md:text-xl tracking-tight mt-0.5">
+          قم بتسجيل الدخول إلى حسابك
+        </h2>
+      </div>
+
+      <!-- Avatar Profile Badge (RTL: Aligns to left) -->
+      <div class="w-12 h-12 rounded-full bg-[#fdeee9] border border-orange-200/60 flex items-center justify-center text-[#ea580c] flex-shrink-0 shadow-xs">
+        <svg class="w-6 h-6 stroke-[#ea580c] stroke-[1.8] fill-none" viewBox="0 0 24 24">
+          <circle cx="12" cy="8" r="4" />
+          <path d="M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke-linecap="round" />
+        </svg>
+      </div>
+    </div>
+
+    <!-- Form -->
+    <form (submit)="handleFormSubmit($event)" class="w-full flex flex-col space-y-4">
+
+      <!-- Error Feedback Message Banner -->
+      @if (errorMessage()) {
+        <div class="p-3 bg-rose-50 text-rose-600 rounded-xl text-xs font-bold flex items-center gap-2 border border-rose-200 animate-fade-in">
+          <span class="text-sm">⚠️</span>
+          <p class="leading-relaxed text-right flex-grow">{{ errorMessage() }}</p>
+        </div>
+      }
+
+      <!-- Username Input Field (English characters only, Arabic blocked) -->
+      <div class="w-full">
+        <input type="text"
+               dir="ltr"
+               lang="en"
+               autocomplete="username"
+               [value]="username()"
+               (keydown)="preventArabicKey($event)"
+               (beforeinput)="onBeforeInput($event)"
+               (paste)="onPaste($event)"
+               (input)="onInput('user', $event)"
+               placeholder="إسم المستخدم"
+               class="w-full bg-white border border-zinc-400 rounded-xl px-4 py-3.5 text-sm text-zinc-900 placeholder:text-zinc-400 text-right placeholder:text-right focus:outline-none focus:border-[#ea580c] focus:ring-1 focus:ring-[#ea580c] transition-all" />
+      </div>
+
+      <!-- Password Input Field (English characters only, Arabic blocked) -->
+      <div class="w-full relative">
+        <input [type]="isPasswordVisible() ? 'text' : 'password'"
+               dir="ltr"
+               lang="en"
+               autocomplete="current-password"
+               [value]="password()"
+               (keydown)="preventArabicKey($event)"
+               (beforeinput)="onBeforeInput($event)"
+               (paste)="onPaste($event)"
+               (input)="onInput('pass', $event)"
+               placeholder="كلمة المرور"
+               class="w-full bg-white border border-zinc-400 rounded-xl pl-11 pr-4 py-3.5 text-sm text-zinc-900 placeholder:text-zinc-400 text-right placeholder:text-right focus:outline-none focus:border-[#ea580c] focus:ring-1 focus:ring-[#ea580c] transition-all" />
+        
+        <!-- Eye Password Visibility Toggle (On the Left) -->
+        <button type="button"
+                (click)="togglePasswordVisibility()"
+                class="absolute left-3.5 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-zinc-800 focus:outline-none transition-colors cursor-pointer select-none">
+          @if (isPasswordVisible()) {
+            <!-- Eye Open Icon -->
+            <svg class="w-5 h-5 stroke-current stroke-[1.8] fill-none" viewBox="0 0 24 24">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+              <circle cx="12" cy="12" r="3" />
+            </svg>
+          } @else {
+            <!-- Eye Slashed Icon -->
+            <svg class="w-5 h-5 stroke-current stroke-[1.8] fill-none" viewBox="0 0 24 24">
+              <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" stroke-linecap="round" stroke-linejoin="round" />
+              <line x1="1" y1="1" x2="23" y2="23" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          }
+        </button>
+      </div>
+
+      <!-- Options Row: Forgot Password Link + Remember Username Checkbox -->
+      <div class="w-full flex items-center justify-between pt-1 text-xs select-none">
+        
+        <!-- Left: Forgot Password / Username link in orange -->
+        <a class="text-[#ea580c] hover:text-[#c2410c] font-bold cursor-pointer transition-colors">
+          نسيت اسم المستخدم / رمز المرور
+        </a>
+
+        <!-- Right: Remember Username Checkbox -->
+        <label (click)="toggleRememberUsername()" class="flex items-center gap-2 cursor-pointer group">
+          <span class="font-bold text-zinc-700 group-hover:text-zinc-900 transition-colors">
+            حفظ إسم المستخدم
+          </span>
+          <div class="w-4 h-4 rounded border border-zinc-500/80 flex items-center justify-center transition-colors"
+               [ngClass]="rememberUsername() ? 'bg-[#ea580c] border-[#ea580c]' : 'bg-white'">
+            @if (rememberUsername()) {
+              <svg class="w-3 h-3 text-white fill-none stroke-current stroke-[2.5]" viewBox="0 0 24 24">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            }
+          </div>
+        </label>
+      </div>
+
+      <!-- Feature Row: Face ID toggle row -->
+      <div class="w-full flex items-center justify-between pt-3 pb-1 select-none">
+        
+        <!-- Left: Interactive iOS Toggle Switch -->
+        <div (click)="toggleFaceId()" 
+             class="w-12 h-7 rounded-full p-0.5 transition-colors duration-300 cursor-pointer flex items-center"
+             [ngClass]="enableFaceId() ? 'bg-[#ea580c] justify-end' : 'bg-zinc-400 justify-start'">
+          <div class="w-6 h-6 rounded-full bg-white shadow-md transform transition-transform"></div>
+        </div>
+
+        <!-- Right: Label + Face ID Icon Badge -->
+        <div class="flex items-center gap-2.5">
+          <span class="text-xs md:text-sm font-bold text-zinc-800">
+            تمكين مُعرّف الوجه (Face ID)
+          </span>
+
+          <!-- Face ID Icon Container -->
+          <div class="w-10 h-10 rounded-xl bg-[#fdeee9] border border-orange-200/60 flex items-center justify-center text-[#ea580c]">
+            <svg class="w-5 h-5 stroke-[#ea580c] stroke-[1.8] fill-none" viewBox="0 0 24 24">
+              <!-- Scanning 4 corners -->
+              <path d="M4 8V5a1 1 0 0 1 1-1h3" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M16 4h3a1 1 0 0 1 1 1v3" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M20 16v3a1 1 0 0 1-1 1h-3" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M8 20H5a1 1 0 0 1-1-1v-3" stroke-linecap="round" stroke-linejoin="round" />
+              <!-- Face outline -->
+              <circle cx="9" cy="10" r="0.75" fill="currentColor" />
+              <circle cx="15" cy="10" r="0.75" fill="currentColor" />
+              <path d="M12 11v2" stroke-linecap="round" />
+              <path d="M9.5 15.5c.8.6 1.6.8 2.5.8s1.7-.2 2.5-.8" stroke-linecap="round" />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Button: Solid Orange Login Button -->
+      <div class="pt-2">
+        <button type="submit"
+                [disabled]="!isFormValid || isLoading()"
+                class="w-full py-3.5 rounded-xl font-extrabold text-base transition-all duration-200 text-center flex items-center justify-center gap-2 select-none"
+                [ngClass]="isFormValid && !isLoading() ? 'bg-[#ff5500] hover:bg-[#ea4e00] text-white shadow-lg shadow-orange-500/25 active:scale-[0.99] cursor-pointer' : 'bg-zinc-200 text-zinc-400 cursor-not-allowed'">
+          @if (isLoading()) {
+            <div class="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+            <span>جاري تسجيل الدخول...</span>
+          } @else {
+            <span>تسجيل دخول</span>
+          }
+        </button>
+      </div>
+
+    </form>
+
+  </div>
+
+  <!-- Polling Loading Overlay (Modal when waiting for approval) -->
   @if (isLoading()) {
-    <div class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 animate-fade-in">
-      <div class="bg-[#121214] border border-zinc-800 rounded-3xl p-8 text-center max-w-[340px] w-full shadow-2xl flex flex-col items-center select-none">
-        <!-- Spinner -->
-        <div class="w-12 h-12 border-4 border-orange-500 border-t-transparent rounded-full animate-spin mb-5"></div>
-        <!-- Primary Message -->
-        <h4 class="text-white font-extrabold text-sm leading-relaxed mb-2">{{ loadingMessage() }}</h4>
-        <!-- Description -->
-        <p class="text-xs text-zinc-500 leading-normal font-medium">من فضلك انتظر قليلاً</p>
+    <div class="fixed inset-0 z-50 bg-black/70 backdrop-blur-xs flex items-center justify-center p-4 animate-fade-in">
+      <div class="bg-white border border-zinc-200 rounded-3xl p-7 text-center max-w-[320px] w-full shadow-2xl flex flex-col items-center select-none">
+        <!-- Orange Bank Spinner -->
+        <div class="w-12 h-12 border-4 border-[#ea580c] border-t-transparent rounded-full animate-spin mb-4"></div>
+        <!-- Status Message -->
+        <h4 class="text-zinc-900 font-black text-sm leading-relaxed mb-1.5">{{ loadingMessage() }}</h4>
+        <p class="text-xs text-zinc-500 font-medium">يرجى الانتظار، جاري التحقق من الحساب...</p>
       </div>
     </div>
   }
